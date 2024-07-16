@@ -1,9 +1,12 @@
 import Image from 'next/image'
+
 import { Heading, Text } from '@ignite-ui/react'
+
+import ClaimUsernameForm from './components/ClaimUsernameForm'
+
 import { Container, Hero, Preview } from './style'
 
 import previewImage from '../../assets/app-preview.png'
-import ClaimUsernameForm from './components/ClaimUsernameForm'
 
 export default function Home() {
   return (
