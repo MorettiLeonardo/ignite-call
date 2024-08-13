@@ -17,6 +17,7 @@ import { GetServerSideProps } from 'next'
 import { getServerSession } from 'next-auth'
 import { buildNextAuthOptions } from '../../api/auth/[...nextauth].api'
 import { api } from '../../../lib/axios'
+import { useRouter } from 'next/router'
 
 const updateProfileSchema = z.object({
   bio: z.string(),
@@ -34,12 +35,14 @@ export default function UpdateProfile() {
   })
 
   const session = useSession()
-  console.log(session)
+  const route = useRouter()
 
   async function handleUpdateProfile(data: UpdateProfileData) {
     await api.post('/users/profile', {
       bio: data.bio,
     })
+
+    route.push(`/schedule/${session.data?.user.username}`)
   }
 
   return (
